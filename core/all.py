@@ -6,6 +6,8 @@ class All:
     def __init__(self, n, m=None):
         if m is None:
             m = n
+        self.n = n
+        self.m = m
         poss = []
         for s in three_parts(n,m):
             for p in permutations(range(3)):
@@ -19,6 +21,12 @@ class All:
         return self.poss[i]
 
     def contains(self, thing):
+        tot = 0
+        for a in thing:
+            for b in a.matrix:
+                tot += sum(b)
+        if tot != self.n * self.m:
+            return False
         for a in self:
             if a[0] == thing[0]:
                 if a[1] == thing[1]:

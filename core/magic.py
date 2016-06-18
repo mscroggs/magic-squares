@@ -24,6 +24,8 @@ class Magic:
 def all_magic(n, m=None, path=None, output=False):
     if m is None:
         m = n
+    if output:
+        print "Running for shape", n, ",", m
     if path is not None:
         file = str(n)
         if m!=n:
@@ -31,9 +33,16 @@ def all_magic(n, m=None, path=None, output=False):
         filename = path + "/" + file
         with open(filename,"w") as f:
             pass
+    if output:
+        print "Generating all threes..."
     all = All(n,m)
+    if output:
+        print "Threes generated."
+        print "Looking for magic squares..."
     magics = []
-    for r in all:
+    for r_number,r in enumerate(all):
+        if output:
+            print r_number, "/", len(all)
         cols = [[l for l in all if l[0]==r[i]] for i in range(3)]
         for c0 in cols[0]:
             for c1 in cols[1]:
@@ -52,4 +61,6 @@ def all_magic(n, m=None, path=None, output=False):
                                 print m
                                 print "---------------"
                             magics.append(m)
+    if output:
+        print "Done"
     return magics
