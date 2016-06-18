@@ -42,9 +42,9 @@ def all_magic(n, m=None, path=None, output=False):
         print "Threes generated."
         print "Looking for magic squares..."
     magics = []
-    for r_number,r in enumerate(all):
+    for r_number,r in enumerate(all.poss_short):
         if output:
-            print r_number, "/", len(all)
+            print r_number, "/", len(all.poss_short)
         cols = [[l for l in all if l[0]==r[i]] for i in range(3)]
         for c0 in cols[0]:
             for c1 in cols[1]:

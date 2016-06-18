@@ -13,6 +13,11 @@ class All:
             for p in permutations(range(3)):
                 poss.append(permute(s,p))
         self.poss = poss
+        poss = []
+        for s in three_parts(n,m):
+            for p in [(0,1,2),(0,2,1)]:
+                poss.append(permute(s,p))
+        self.poss_short = poss
 
     def __iter__(self):
         return iter(self.poss)
