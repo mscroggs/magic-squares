@@ -1,4 +1,5 @@
 from all import All
+from utils import sum_three
 
 class Magic:
     def __init__(self, ls):
@@ -36,6 +37,7 @@ def all_magic(n, m=None, path=None, output=False):
     if output:
         print "Generating all threes..."
     all = All(n,m)
+    area = n*m
     if output:
         print "Threes generated."
         print "Looking for magic squares..."
@@ -47,11 +49,19 @@ def all_magic(n, m=None, path=None, output=False):
         for c0 in cols[0]:
             for c1 in cols[1]:
                 for c2 in cols[2]:
+                    to_check = []
                     for i in [1,2]:
-                        if not all.contains([c0[i],c1[i],c2[i]]):
+                        to_check.append([c0[i],c1[i],c2[i]])
+                    to_check.append([c0[0],c1[1],c2[2]])
+                    to_check.append([c0[2],c1[1],c2[0]])
+                    for a in to_check:
+                        if sum_three(a) != area:
                             break
                     else:
-                        if all.contains([c0[0],c1[1],c2[2]]) and all.contains([c0[2],c1[1],c2[0]]):
+                        for a in to_check:
+                            if not all.contains(a):
+                                break
+                        else:
                             m = Magic([c0,c1,c2])
                             if path is not None:
                                 with open(filename,"a") as f:

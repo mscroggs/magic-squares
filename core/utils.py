@@ -37,3 +37,9 @@ def replace(ls, p):
 
 def permute(ls, p):
     return [ls[p[0]],ls[p[1]],ls[p[2]]]
+
+def sum_three(thing):
+    tot = 0
+    for a in thing:
+        for b in a.matrix:
+            tot += sum(b)
