@@ -21,7 +21,9 @@ class Magic:
             out += ["".join([j[i] for j in ls]) for i in range(len(ls[0]))]
         return "\n".join(out)
 
-def all_magic(n, m=None, path=None):
+def all_magic(n, m=None, path=None, output=False):
+    if m is None:
+        m = n
     if path is not None:
         file = str(n)
         if m!=n:
@@ -29,8 +31,6 @@ def all_magic(n, m=None, path=None):
         filename = path + "/" + file
         with open(filename,"w") as f:
             pass
-    if m is None:
-        m = n
     all = All(n,m)
     magics = []
     for r in all:
@@ -39,12 +39,17 @@ def all_magic(n, m=None, path=None):
             for c1 in cols[1]:
                 for c2 in cols[2]:
                     for i in [1,2]:
-                        if not all.contains([c0[i],c1[i],c2[i]]) and all.contains([c0[0],c1[1],c2[2]]) and all.contains([c0[2],c1[1],c2[0]]):
+                        if not all.contains([c0[i],c1[i],c2[i]]):
                             break
                     else:
-                        if path is not None:
-                            with open(filename,"a") as f:
-                                f.write(Magic([c0,c1,c2]).to_ascii())
-                                f.write("\n----------------------\n")
-                        magics.append(Magic([c0,c1,c2]))
+                        if all.contains([c0[0],c1[1],c2[2]]) and all.contains([c0[2],c1[1],c2[0]]):
+                            m = Magic([c0,c1,c2])
+                            if path is not None:
+                                with open(filename,"a") as f:
+                                    f.write(m.to_ascii())
+                                    f.write("\n----------------------\n")
+                            if output:
+                                print m
+                                print "---------------"
+                            magics.append(m)
     return magics
