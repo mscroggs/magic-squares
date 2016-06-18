@@ -22,6 +22,13 @@ class Magic:
         return "\n".join(out)
 
 def all_magic(n, m=None, path=None):
+    if path is not None:
+        file = str(n)
+        if m!=n:
+            file += "-"+str(m)
+        filename = path + "/" + file
+        with open(filename,"w") as f:
+            pass
     if m is None:
         m = n
     all = All(n,m)
@@ -36,10 +43,7 @@ def all_magic(n, m=None, path=None):
                             break
                     else:
                         if path is not None:
-                            file = str(n)
-                            if m!=n:
-                                file += "-"+str(m)
-                            with open(path+"/"+file,"a") as f :
+                            with open(filename,"a") as f:
                                 f.write(Magic([c0,c1,c2]).to_ascii())
                                 f.write("\n----------------------\n")
                         magics.append(Magic([c0,c1,c2]))
