@@ -1,5 +1,6 @@
-from utils import rotate90, equ, eq1, to_int
+from utils import rotate90, equ, eq1, to_int, replace
 from Shape import Shape
+from itertools import permutations
 
 class three_parts:
     def __init__(self, n, m=None):
@@ -22,16 +23,15 @@ class three_parts:
             while self.current[i][j] > 3:
                 self.current[i][j] = 1
                 i += 1
-                if i >= self.m:
+                if i >= self.n:
                     j += 1
                     i = 0
-                    if j >= self.n:
+                    if j >= self.m:
                         raise StopIteration()
                 self.current[i][j] += 1
         if check:
-            while not self.is_max():
+            while not self.is_max() or self.has_blank():
                 self.next(False)
-            print to_int(self.current)
             return self.three()
 
     def first(self):
@@ -45,8 +45,16 @@ class three_parts:
         n = to_int(p)
         for i in range(3):
             p = rotate90(p)
-            if len(p) == len(self.current) and to_int(p) > n:
-                return False
+            for q in permutations(range(1,4)):
+                if len(p) == len(self.current) and to_int(replace(p,q)) > n:
+                    return False
         return True
 
-
+    def has_blank(self):
+        for i in [1,2,3]:
+            for a in self.current:
+                if i in a:
+                    break
+            else:
+                return True
+        return False

@@ -1,4 +1,5 @@
-from utils import rotate90, char
+from utils import rotate90, char, replace
+from itertools import permutations
 
 class Shape:
     def __init__(self, matrix):
@@ -13,19 +14,17 @@ class Shape:
     def rotations(self):
         rots = [self.matrix]
         for i in range(3):
-            rots.append(rotate90(rots[-1]))
+            base = rotate90(rots[-1])
+            for p in permutations(range(1,4)):
+                rots.append(replace(base,p))
         return rots
 
     def __unicode__(self):
         out = ""
-        out += " " + "-"*len(self.matrix[0]) + " "
-        out += "\n"
         for row in self.matrix:
-            out += "|"
             out += "".join([char(i) for i in row])
-            out += "|"
+            out += " "
             out += "\n"
-        out += " " + "-"*len(self.matrix[0]) + " "
         return out
 
     def __str__(self):

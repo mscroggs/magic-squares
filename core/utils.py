@@ -25,3 +25,9 @@ def char(i):
 
 def to_int(current):
     return int("".join(["".join([str(i) for i in row]) for row in current]))
+
+def replace(ls, p):
+    return [[p[i-1] for i in row] for row in ls]
+
+def permute(ls, p):
+    return [ls[p[0]],ls[p[1]],ls[p[2]]]
