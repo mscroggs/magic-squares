@@ -1,19 +1,4 @@
-def rotate90(matrix):
-    return [[row[-1-i] for row in matrix] for i in range(len(matrix[0]))]
-
-def char(i):
-    if i==0:
-        return " "
-    if i==1:
-        return u"\u2588"
-    if i==2:
-        return u"\u259B"
-    if i==3:
-        return u"\u259F"
-    if i==4:
-        return u"\u259C"
-    if i==5:
-        return u"\u2599"
+from utils import rotate90, char
 
 class Shape:
     def __init__(self, matrix):
