@@ -1,4 +1,4 @@
-from utils import rotate90, char, replace
+from utils import rotate90, char, replace, ascii_char
 from itertools import permutations
 
 class Shape:
@@ -29,3 +29,11 @@ class Shape:
 
     def __str__(self):
         return unicode(self).encode('utf-8')
+
+    def to_ascii(self):
+        out = ""
+        for row in self.matrix:
+            out += "".join([ascii_char(i) for i in row])
+            out += " "
+            out += "\n"
+        return out

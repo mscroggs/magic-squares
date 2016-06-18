@@ -23,6 +23,12 @@ def char(i):
     if i==5:
         return u"\u2599"
 
+def ascii_char(i):
+    if i==1:
+        return "#"
+    else:
+        return " "
+
 def to_int(current):
     return int("".join(["".join([str(i) for i in row]) for row in current]))
 

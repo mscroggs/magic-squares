@@ -6,8 +6,4 @@ for i in range(1,5):
     with open("output/"+str(i),"w") as f:
         pass
     print i
-    m = all_magic(i)
-    for a in m:
-        with open("output/"+str(i),"a") as f:
-            f.write(unicode(a))
-        print a
+    m = all_magic(i, path="output")
