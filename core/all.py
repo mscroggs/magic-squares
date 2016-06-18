@@ -3,21 +3,20 @@ from itertools import permutations
 from utils import permute
 
 class All:
-    def __init__(self, n, m=None):
+    def __init__(self, n, m=None, output=False):
         if m is None:
             m = n
         self.n = n
         self.m = m
         poss = []
-        for s in three_parts(n,m):
+        poss2 = []
+        for s in three_parts(n,m,output=output):
             for p in permutations(range(3)):
                 poss.append(permute(s,p))
-        self.poss = poss
-        poss = []
-        for s in three_parts(n,m):
             for p in [(0,1,2),(0,2,1)]:
-                poss.append(permute(s,p))
-        self.poss_short = poss
+                poss2.append(permute(s,p))
+        self.poss = poss
+        self.poss_short = poss2
 
     def __iter__(self):
         return iter(self.poss)

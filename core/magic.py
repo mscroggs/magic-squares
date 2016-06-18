@@ -36,7 +36,7 @@ def all_magic(n, m=None, path=None, output=False):
             pass
     if output:
         print "Generating all threes..."
-    all = All(n,m)
+    all = All(n,m,output=output)
     area = n*m
     if output:
         print "Threes generated."

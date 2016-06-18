@@ -3,18 +3,24 @@ from Shape import Shape
 from itertools import permutations
 
 class three_parts:
-    def __init__(self, n, m=None):
+    def __init__(self, n, m=None, output=False):
         if m is None:
             m = n
         self.shape = (n,m)
         self.n = n
         self.m = m
         self.current = None
+        self.output = output
+        self.i = 0
+        self.u = 0
 
     def __iter__(self):
         return self
 
     def next(self, check=True):
+        if self.output:
+            print "",self.i,"/",3**(self.n*self.m),"->",self.u
+            self.i += 1
         if self.current is None:
             self.current = self.first()
         else:
@@ -32,6 +38,7 @@ class three_parts:
         if check:
             while not self.is_max() or self.has_blank():
                 self.next(False)
+            self.u += 1
             return self.three()
 
     def first(self):
