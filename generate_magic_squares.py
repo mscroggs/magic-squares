@@ -1,6 +1,5 @@
-from core import all_magic,All
-from IPython import embed
+from core import all_magic
 
-
-for i in range(7,8):
-    m = all_magic(i, path="output")
+all_magic(3, path="output", output=True)
+all_magic(4, path="output", output=True)
+all_magic(7, path="output", output=True)
