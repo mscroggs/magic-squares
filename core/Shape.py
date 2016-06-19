@@ -13,6 +13,9 @@ class Shape:
             matrix = matrix[:][:-1]
         self.matrix = matrix
 
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
     def __eq__(self, other):
         for rot in self.rotations():
             if rot == other.matrix:

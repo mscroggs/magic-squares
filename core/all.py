@@ -11,10 +11,19 @@ class All:
         poss = []
         poss2 = []
         for s in three_parts(n,m,output=output):
-            for p in permutations(range(3)):
-                poss.append(permute(s,p))
-            for p in [(0,1,2),(0,2,1)]:
-                poss2.append(permute(s,p))
+            poss.append(s)
+            if s[0] != s[1]:
+                poss.append(permute(s,(1,0,2)))
+            if s[0] != s[2]:
+                poss.append(permute(s,(2,1,0)))
+            if s[1] != s[2]:
+                poss.append(permute(s,(0,2,1)))
+            if s[1] != s[2] or s[1] != s[0]:
+                poss.append(permute(s,(1,2,0)))
+                poss.append(permute(s,(2,0,1)))
+            poss2.append(s)
+            if s[0] != s[1]:
+                poss2.append(permute(s,(1,0,2)))
         self.poss = poss
         self.poss_short = poss2
 
