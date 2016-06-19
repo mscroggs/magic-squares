@@ -43,3 +43,4 @@ def sum_three(thing):
     for a in thing:
         for b in a.matrix:
             tot += sum(b)
+    return tot

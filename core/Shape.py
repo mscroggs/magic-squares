@@ -3,6 +3,14 @@ from itertools import permutations
 
 class Shape:
     def __init__(self, matrix):
+        while False not in [i==0 for i in matrix[0][:]]:
+            matrix = matrix[1:][:]
+        while False not in [i==0 for i in matrix[-1][:]]:
+            matrix = matrix[:-1][:]
+        while False not in [i==0 for i in matrix[:][0]]:
+            matrix = matrix[:][1:]
+        while False not in [i==0 for i in matrix[:][-1]]:
+            matrix = matrix[:][:-1]
         self.matrix = matrix
 
     def __eq__(self, other):
